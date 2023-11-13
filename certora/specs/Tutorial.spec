@@ -1,9 +1,11 @@
-using ERC20 as _ERC20;
+using ERC20 as asset;
 
 methods {
     function allowance(address, address) external returns uint256 envfree;
     function previewWithdraw(uint256) external returns uint256 envfree;
     function totalAssets() external returns uint256 envfree;
+    function totalSupply() external returns uint256 envfree;
+    function asset.totalSupply() external returns uint256 envfree;
 }
 
 /**

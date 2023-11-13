@@ -1,4 +1,4 @@
-using ERC20 as _ERC20;
+using ERC20 as asset;
 
 //Method block defining envfree method (and summaries)
 methods {
@@ -6,8 +6,9 @@ methods {
     function balanceOf(address) external returns uint256 envfree;
     function allowance(address, address) external returns uint256 envfree;
     function totalAssets() external returns uint256 envfree;
-    function _ERC20.totalSupply() external returns uint256 envfree;
-    function _ERC20.balanceOf(address) external returns uint256 envfree;
+    function asset.totalSupply() external returns uint256 envfree;
+    function asset.balanceOf(address) external returns uint256 envfree;
+    function asset.decimals() external returns uint8 envfree;
 }
 
 //Basic rule stating mint must increase totalAssets.
@@ -74,14 +75,20 @@ function safeAssumptionsERC20() {
 invariant totalAssetsZeroImpliesTotalSupplyZero()
     totalAssets() == 0 => totalSupply() == 0
     {
-
         preserved {
             requireInvariant sumOfBalancesEqualsTotalSupplyERC4626;
             requireInvariant sumOfBalancesEqualsTotalSupplyERC20;
-            requireInvariant singleUserBalanceSmallerThanTotalSupplyERC4626;
-            requireInvariant singleUserBalanceSmallerThanTotalSupplyERC20;
         }
 }
+
+
+invariant totalSupplyMatch()
+    totalSupply() > 0 => asset.totalSupply() > 0
+    {
+        preserved {
+            requireInvariant sumOfBalancesEqualsTotalSupplyERC20;
+        }
+    }
 
 //An invariant is a property that holds before and after all method executions of a contract under verification.
 invariant sumOfBalancesEqualsTotalSupplyERC4626()
@@ -105,19 +112,19 @@ hook Sload uint256 value currentContract.balanceOf[KEY address user] STORAGE {
 }
 
 invariant sumOfBalancesEqualsTotalSupplyERC20()
-    sumOfBalancesERC20 == to_mathint(_ERC20.totalSupply());
+    sumOfBalancesERC20 == to_mathint(asset.totalSupply());
 
 ghost mathint sumOfBalancesERC20 {
     init_state axiom sumOfBalancesERC20 == 0;
 }
 
-hook Sstore _ERC20.balanceOf[KEY address user] uint256 newValue (uint256 oldValue) STORAGE {
+hook Sstore asset.balanceOf[KEY address user] uint256 newValue (uint256 oldValue) STORAGE {
     sumOfBalancesERC20 = sumOfBalancesERC20 + newValue - oldValue;
     userBalanceERC20 = newValue;
     balanceOfMirroredERC20[user] = newValue;
 }
 
-hook Sload uint256 value _ERC20.balanceOf[KEY address user] STORAGE {
+hook Sload uint256 value asset.balanceOf[KEY address user] STORAGE {
     //This line makes the proof work. But is this actually safe to assume? With every load in the programm, we assume the invariant to already hold.
     require to_mathint(value) <= sumOfBalancesERC20;
     require value == balanceOfMirroredERC20[user];
@@ -146,7 +153,7 @@ ghost mapping(address => uint256) balanceOfMirroredERC20 {
 }
 
 invariant mirrorIsCorrectERC20(address x)
-    balanceOfMirroredERC20[x] == _ERC20.balanceOf(x);
+    balanceOfMirroredERC20[x] == asset.balanceOf(x);
 
 
 invariant mirrorIsCorrectERC4626(address x)
