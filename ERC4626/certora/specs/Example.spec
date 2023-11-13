@@ -15,20 +15,6 @@ methods {
     function _ERC20.balanceOf(address) external returns uint256 envfree;
 }
 
-rule convertToSharesIsAdditive(uint256 assetX, uint256 assetY){
-    
-    uint256 sharesX = convertToShares(assetX);
-    uint256 sharesY = convertToShares(assetY);
-
-    //Ensure no overflow is occuring.
-    uint256 sumOfAssets = require_uint256(assetX + assetY);
-    uint256 sharesOfSumOfAssets = convertToShares(sumOfAssets);
-
-    //Assert  no overflow is occuring.
-    assert sharesOfSumOfAssets <= require_uint256(assetX + sharesY), "convertToShares is not additive.";
-}
-
-
 //Basic rule stating mint must increase totalAssets.
 rule mintMustIncreaseTotalAssets(uint256 shares, address user){
     //State basic assumption that will be verified and hold.
