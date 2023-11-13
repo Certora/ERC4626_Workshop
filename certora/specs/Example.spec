@@ -50,6 +50,24 @@ rule assetAndShareMonotonicity(env e, method f, uint256 amount, address receiver
 }
 
 
+invariant totalAssetsZeroImpliesTotalSupplyZero()
+    totalAssets() == 0 => totalSupply() == 0
+    {
+        preserved {
+            requireInvariant sumOfBalancesEqualsTotalSupplyERC4626;
+            requireInvariant sumOfBalancesEqualsTotalSupplyERC20;
+        }
+}
+
+
+invariant totalSupplyMatch()
+    totalSupply() > 0 => asset.totalSupply() > 0
+    {
+        preserved {
+            requireInvariant sumOfBalancesEqualsTotalSupplyERC20;
+        }
+    }
+
 
 /*Safe assumptions below: These are invariants for the underyling ERC20 as well as ERC4626.
 * The safeAssumptions use CVL features such as invariant, hooks and ghost.
@@ -71,24 +89,6 @@ function safeAssumptionsERC20() {
     requireInvariant singleUserBalanceSmallerThanTotalSupplyERC20;
 }
 
-
-invariant totalAssetsZeroImpliesTotalSupplyZero()
-    totalAssets() == 0 => totalSupply() == 0
-    {
-        preserved {
-            requireInvariant sumOfBalancesEqualsTotalSupplyERC4626;
-            requireInvariant sumOfBalancesEqualsTotalSupplyERC20;
-        }
-}
-
-
-invariant totalSupplyMatch()
-    totalSupply() > 0 => asset.totalSupply() > 0
-    {
-        preserved {
-            requireInvariant sumOfBalancesEqualsTotalSupplyERC20;
-        }
-    }
 
 //An invariant is a property that holds before and after all method executions of a contract under verification.
 invariant sumOfBalancesEqualsTotalSupplyERC4626()
