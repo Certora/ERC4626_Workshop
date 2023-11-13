@@ -6,11 +6,6 @@ methods {
     function balanceOf(address) external returns uint256 envfree;
     function allowance(address, address) external returns uint256 envfree;
     function totalAssets() external returns uint256 envfree;
-    function previewMint(uint256) external returns uint256 envfree;
-    function previewWithdraw(uint256) external returns uint256 envfree;
-    function previewDeposit(uint256) external returns uint256 envfree;
-    function previewRedeem(uint256) external returns uint256 envfree;
-    function convertToShares(uint256) external returns uint256 envfree;
     function _ERC20.totalSupply() external returns uint256 envfree;
     function _ERC20.balanceOf(address) external returns uint256 envfree;
 }
