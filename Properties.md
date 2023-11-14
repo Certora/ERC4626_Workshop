@@ -31,7 +31,6 @@ FunctionalAccountingProps
 
 RedeemUsingApprovalProps
 ---
-> All properties with withdraw and redeem implemented.
 * `withdraw()` must allow proxies to withdraw tokens on behalf of the owner using share token approvals
 * `redeem()` must allow proxies to redeem shares on behalf of the owner using share token approvals
 * Third party `withdraw()` calls must update the msg.sender's allowance
@@ -41,7 +40,6 @@ RedeemUsingApprovalProps
 
 SenderIndependentProps
 ---
-> declaring methods env free checks this automatically for us. Otherwise one _could_ take two different env e1, env e2 and show that the return value of the function calls is equal for any environment.
 * `maxDeposit()` must assume the receiver/sender has infinite assets
 * `maxMint()` must assume the receiver/sender has infinite assets
 * `previewMint()` must not account for msg.sender asset balance
