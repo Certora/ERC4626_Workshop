@@ -12,19 +12,15 @@ MustNotRevertProps
 
 FunctionalAccountingProps
 ---
-> Implementation see rule depositProperties
 * `deposit()` must deduct assets from the owner
 * `deposit()` must credit shares to the receiver
 * `deposit()` must mint greater than or equal to the number of shares predicted by `previewDeposit()`
-> Implementation see rule mintProperties
 * `mint()` must deduct assets from the owner
 * `mint()` must credit shares to the receiver
 * `mint()` must consume less than or equal to the number of assets predicted by `previewMint()`
-> Implementation see rule withdrawProperties
 * `withdraw()` must deduct shares from the owner
 * `withdraw()` must credit assets to the receiver
 * `withdraw()` must deduct less than or equal to the number of shares predicted by `previewWithdraw()`
-> Implementation see rule redeemProperties
 * `redeem()` must deduct shares from the owner
 * `redeem()` must credit assets to the receiver
 * `redeem()` must credit greater than or equal to the number of assets predicted by `previewRedeem()`
