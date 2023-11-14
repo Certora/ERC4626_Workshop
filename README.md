@@ -6,10 +6,11 @@ Repository alongside the Certora workshop on ERC4626 at TrustX @ Istanbul 2023.
 1. Familiarize yourself with the [ERC4626 specification](https://ethereum.org/en/developers/docs/standards/tokens/erc-4626/) and take a look at the (buggy) implementation of ERC4626 under `src`.
 2. To get to know CVL take a look at the example specification under
 [`certora/specs/Example.spec`](certora/specs/Example.spec).
-3. Install the Certora prover ([Documentation](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#))
-4. Run the specification by executing `certoraRun certora/specs/Example.conf` from within this folder. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/53900/2140288d54e645cf863adc119d3e235b?anonymousKey=f9958ff2b71e3b2a3b3cd408924c63afbd5f8170).
-5. Inspect the results and make yourself familiar with the output. Why does the rule `assetAndShareMonotonicity` fail for method `redeem`? Can you spot the mistake in the rule?
-6. Think about properties of ERC4626 and note them down in https://docs.google.com/document/d/116HDhYT8pJMD9DOdrS8NdWdvTnOdsIcEQK9AjnxpdnY/edit
+3. [Sign-up for Certora Free Tier](https://www.certora.com/signup?plan=prover)
+4. Install the Certora prover ([Documentation](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#))
+5. Run the specification by executing `certoraRun certora/specs/Example.conf` from within this folder. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/53900/2140288d54e645cf863adc119d3e235b?anonymousKey=f9958ff2b71e3b2a3b3cd408924c63afbd5f8170).
+6. Inspect the results and make yourself familiar with the output. Why does the rule `assetAndShareMonotonicity` fail for method `redeem`? Can you spot the mistake in the rule?
+7. Think about properties of ERC4626 and note them down in https://docs.google.com/document/d/116HDhYT8pJMD9DOdrS8NdWdvTnOdsIcEQK9AjnxpdnY/edit
 
 # Write your own CVL specifications
 
