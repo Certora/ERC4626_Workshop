@@ -7,7 +7,8 @@ Repository alongside the Certora workshop on ERC4626 at TrustX @ Istanbul 2023.
 2. To get to know CVL take a look at the example specification under
 [`certora/specs/Example.spec`](certora/specs/Example.spec).
 3. [Sign-up for Certora Free Tier](https://www.certora.com/signup?plan=prover)
-4. Install the Certora prover ([Documentation](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#))
+4. Install the Certora prover following all steps from our official [Documentation](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#)). 
+* _Note: It's important to also set the CERTORAKEY evnrionemnt variable._
 5. Run the specification by executing `certoraRun certora/conf/Example.conf` from within this folder. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/53900/2140288d54e645cf863adc119d3e235b?anonymousKey=f9958ff2b71e3b2a3b3cd408924c63afbd5f8170).
 6. Inspect the results and make yourself familiar with the output. Why does the rule `assetAndShareMonotonicity` fail for method `redeem`? Can you spot the mistake in the rule?
 7. Think about properties of ERC4626 and note them down in https://docs.google.com/document/d/116HDhYT8pJMD9DOdrS8NdWdvTnOdsIcEQK9AjnxpdnY/edit
