@@ -16,6 +16,7 @@ methods {
 * Property 1: Property "Mint by user must increase totalSupply".
 * Rule that proves users receive shares after depositing into the vault by calling mint()
 */
+// @audit change this to use deposit instead of mint
 rule mintIncreasesTotalShareSupply(uint256 shares, address receiver) {
     env e;
     mathint total_supply_before = totalSupply();
@@ -74,3 +75,4 @@ rule redeemDecreasesTotalShareSupply(uint256 shares, address receiver, address o
     // receiver's balance should increase by an amount proportional to the shares redeemed
     assert receiver_asset_balance_after_redemption == receiver_asset_balance_before_redemption + redeemed_assets, "receiver's share balance should increase by redeemed amount of shares";
 }
+
