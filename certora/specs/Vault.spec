@@ -1,4 +1,4 @@
-using ERC20 as asset;
+using ERC20Mock as asset;
 
 methods {
     function allowance(address, address) external returns uint256 envfree;
@@ -75,4 +75,3 @@ rule redeemDecreasesTotalShareSupply(uint256 shares, address receiver, address o
     // receiver's balance should increase by an amount proportional to the shares redeemed
     assert receiver_asset_balance_after_redemption == receiver_asset_balance_before_redemption + redeemed_assets, "receiver's share balance should increase by redeemed amount of shares";
 }
-
