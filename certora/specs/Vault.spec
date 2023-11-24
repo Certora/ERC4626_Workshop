@@ -4,9 +4,11 @@ methods {
     function allowance(address, address) external returns uint256 envfree;
     function totalSupply() external returns uint256 envfree;
     function balanceOf(address) external returns uint256 envfree;
-    function mint(uint256, address) external returns (uint256);
+    function deposit(uint256, address) external returns (uint256);
     function redeem(uint256, address, address) external returns (uint256);
     function previewRedeem(uint256) external  returns (uint256) envfree;
+    function previewDeposit(uint256 assets) external returns (uint256) envfree;
+
 
     function asset.balanceOf(address) external returns uint256 envfree;
     function asset.transfer(address, uint256) external returns (bool); 
@@ -14,15 +16,15 @@ methods {
 
 /**
 * Property 1: Property "Mint by user must increase totalSupply".
-* Rule that proves users receive shares after depositing into the vault by calling mint()
+* Rule that proves users receive shares after calling mint()
 */
-// @audit change this to use deposit instead of mint
 rule mintIncreasesTotalShareSupply(uint256 shares, address receiver) {
     env e;
     mathint total_supply_before = totalSupply();
     // number of user shares before minting
     mathint shares_before_mint = balanceOf(receiver);
-    // this filters out states where the user's has more shares than the totalSupply
+    // this filters out states where the user's has more shares than the totalSupply as they should be unreachable, 
+    // this should be proven to be true other rules
     require shares_before_mint <= to_mathint(totalSupply());
 
     // call the mint function in the contract
