@@ -7,20 +7,15 @@ The verification is checked against OpenZeppelin's [implementation of ERC4626](h
 
 # Getting started
 
-1. Familiarize yourself with the [ERC4626 specification](https://ethereum.org/en/developers/docs/standards/tokens/erc-4626/) and take a look at the (buggy) implementation of ERC4626 under `src`.
-2. To get to know CVL take a look at the example specification under
-[`certora/specs/Example.spec`](certora/specs/Example.spec).
-3. Install the Certora prover ([Documentation](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#))
-4. Run the InflationAttack specification by executing `certoraRun ERC4626_Workshop/certora/conf/Vault.conf` from within this folder to view the initial rules verified for the vault. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/51488/9318516df38e44f3a3e53e992678e8b3/?anonymousKey=b427e6e78bef54690f6224e7ebd7ff4dcf4b7df4).
-5. Run the Vault specification by executing `certoraRun ERC4626_Workshop/certora/conf/InflationAttack.conf` from within this folder to view the rule that verifies the inflation attack. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/51488/2f4df3e9806d4a72828c678150c163cd/?anonymousKey=9fbbc0579ac75591c05d54d60408db01d33b4072).
-
-
+1. [Sign-up for Certora Free Tier](https://www.certora.com/signup?plan=prover)
+* _Note: It's important to also set the CERTORAKEY environment variable._
+2. Install the Certora prover [Documentation](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#)
+3. Run the Vault specification by executing `certoraRun certora/conf/Vault.conf` from within the ERC4626_Workshop folder to view the initial rules verified for the vault. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/51488/2414fef5c0a24b37a780d03f54dc5985/?anonymousKey=3bff148cb433a68c92412b14e73dcb9096ecb2c9).
+4. Run the InflationAttack specification by executing `certoraRun certora/conf/InflationAttack.conf` from within the ERC4626_Workshop folder. Follow the link returned and wait for the verification to be completed. Alternatively, open the [pre-computed results](https://prover.certora.com/output/51488/7c15a3a2cf3b4c43b89c06a565f023f4/?anonymousKey=7566763bc37c184851c64e773df10988a52fbc5e).
+ the rule that verifies the inflation attack. 
+ 
 # Additional Material
 
 * [Prover Documentation](https://docs.certora.com/en/latest/)
 * [ERC-4626 Specifications](https://ethereum.org/en/developers/docs/standards/tokens/erc-4626/)
 * [Inflation Attack](https://tienshaoku.medium.com/eip-4626-inflation-sandwich-attack-deep-dive-and-how-to-solve-it-9e3e320cc3f1)
-
-
-# About the CVL specs
-The [specifications](InflationAttack/certora/spec/ERC4626-InflationAttack.spec) contain two rules. A CVL rule that step-by-step models inflation attack as described in the blog bost by 田少谷 Shao. But there is also a second rule, that is way simple but also detects the bug. 
